@@ -1,0 +1,40 @@
+{
+  "name": "uniyaqua_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkkumar300/uniyaqua_backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/arkkumar300/uniyaqua_backend/issues"
+  },
+  "homepage": "https://github.com/arkkumar300/uniyaqua_backend#readme",
+  "dependencies": {
+    "@google-cloud/storage": "^8.4.0",
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^2.3.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "express-fileupload": "^1.5.2",
+    "fuse.js": "^7.5.0",
+    "joi": "^18.2.9",
+    "jsonwebtoken": "^9.0.3",
+    "moment": "^2.31.0",
+    "multer": "^2.4.0",
+    "mysql2": "^3.24.5",
+    "node-cron": "^4.6.0",
+    "sequelize": "^6.37.8"
+  }
+}
