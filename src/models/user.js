@@ -155,10 +155,6 @@ const User = sequelize.define(
     approvedBy: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: "User",
-        key: "id",
-      },
     },
     otp: {
       type: DataTypes.STRING(6),
@@ -185,9 +181,12 @@ const User = sequelize.define(
 );
 
 User.belongsTo(User, {
-  foreignKey: "approvedBy",
+  foreignKey: {
+    name: "approvedBy",
+    allowNull: true,
+  },
   as: "approver",
-  allowNull: true,
+  onDelete: "SET NULL",
+  onUpdate: "CASCADE",
 });
-
 module.exports = User;
