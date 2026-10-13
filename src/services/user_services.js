@@ -31,9 +31,9 @@ const signUp = async (req, res) => {
     try {
     // Multer .fields() puts files here: req.files.labLogo = [fileObj]
     const pickUrl = (fieldName) => {
-      console.log("fileName::",fieldName)
+
       const arr = req.files?.[fieldName];
-      console.log("arr::",arr)
+
       if (!arr || !arr.length) return null;
       return arr[0].path; // GCS public URL, set by GCSMulterStorage
     };

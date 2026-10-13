@@ -10,37 +10,90 @@ const uploadVideoStorage   = new GCSMulterStorage({ folder: "videos" });
 
 // ---------- Filters ----------
 const fileFilter = (req, file, cb) => {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|svg)$/i)) {
-    return cb(new Error("Please upload a valid image file type"), false);
+  console.log("file::", file.originalname);
+
+  const allowedExtensions = /\.(jpg|jpeg|png|svg)$/i;
+
+  // If the filename has no extension, skip extension validation
+  if (!file.originalname.includes(".")) {
+    return cb(null, true);
   }
+
+  // If an extension exists, validate it
+  if (!allowedExtensions.test(file.originalname)) {
+    return cb(
+      new Error(
+        `Invalid image file: ${file.originalname}. Allowed types: JPG, JPEG, PNG, SVG`
+      )
+    );
+  }
+
   cb(null, true);
 };
 
 const importfileFilter = (req, file, cb) => {
-  if (!file.originalname.match(/\.(xlsx)$/i)) {
+  console.log("Import file::", file.originalname);
+
+  const allowedExtensions = /\.xlsx$/i;
+
+  // Skip validation if there is no extension
+  if (!file.originalname.includes(".")) {
+    return cb(null, true);
+  }
+
+  // Validate extension if present
+  if (!allowedExtensions.test(file.originalname)) {
     return cb(new Error("Please upload a valid xlsx file only"), false);
   }
+
   cb(null, true);
 };
 
 const pdfFilter = (req, file, cb) => {
-  if (!file.originalname.match(/\.(pdf|docx|ppt)$/i)) {
-    return cb(new Error("Please upload a valid pdf file type"), false);
+  console.log("PDF file::", file.originalname);
+
+  const allowedExtensions = /\.(pdf|docx|ppt)$/i;
+
+  if (!file.originalname.includes(".")) {
+    return cb(null, true);
   }
+
+  if (!allowedExtensions.test(file.originalname)) {
+    return cb(new Error("Please upload a valid pdf, docx, or ppt file"), false);
+  }
+
   cb(null, true);
 };
 
 const videoFilter = (req, file, cb) => {
-  if (!file.originalname.match(/\.(mov|mp4|avi|wmv)$/i)) {
+  console.log("Video file::", file.originalname);
+
+  const allowedExtensions = /\.(mov|mp4|avi|wmv)$/i;
+
+  if (!file.originalname.includes(".")) {
+    return cb(null, true);
+  }
+
+  if (!allowedExtensions.test(file.originalname)) {
     return cb(new Error("Please upload a valid video file type"), false);
   }
+
   cb(null, true);
 };
 
 const imagePdfFilter = (req, file, cb) => {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|pdf)$/i)) {
-    return cb(new Error("Please upload a valid image or pdf file type"), false);
+  console.log("Image/PDF file::", file.originalname);
+
+  const allowedExtensions = /\.(jpg|jpeg|png|pdf)$/i;
+
+  if (!file.originalname.includes(".")) {
+    return cb(null, true);
   }
+
+  if (!allowedExtensions.test(file.originalname)) {
+    return cb(new Error("Please upload a valid image or PDF file type"), false);
+  }
+
   cb(null, true);
 };
 

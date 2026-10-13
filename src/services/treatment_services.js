@@ -116,8 +116,8 @@ const createTreatment = async (req, res) => {
 
     const files = [imageUrl1, imageUrl2, imageUrl3];
     for (const file of files) {
-      const { url } = await uploadToCloud(file?.filename);
-      imageUrls.push(url);
+      const { publicUrl } = file;
+      imageUrls.push(publicUrl);
     }
   }
 
@@ -155,9 +155,10 @@ const updateTreatment = async (req, res) => {
 
     for (const file of files) {
       if (file) {
-        const { url } = await uploadToCloud(file.filename);
-        imageUrls.push(url);
-      } else {
+        const { publicUrl } = file;
+        console.log("treatment file::",publicUrl)
+        imageUrls.push(publicUrl);
+        } else {
         imageUrls.push(null);
       }
     }

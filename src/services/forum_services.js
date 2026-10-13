@@ -28,11 +28,10 @@ const create = async (req, res) => {
 
     const fileUrls = [imageUrl1, imageUrl2, imageUrl3];
     // console.log(fileUrls);
-    for (const file of fileUrls) {
+    for (const file of fileUrls) { 
       if (file) {
-        const { url } = await uploadToCloud(file[0].filename);
-        console.log("URL", url);
-        imageUrls.push(url);
+      const { publicUrl } = file;
+      imageUrls.push(publicUrl);
       }
     }
   }
@@ -398,8 +397,9 @@ const answerForum = async (req, res) => {
   } else {
     const images = req.files;
     for (const file of images) {
-      const { url } = await uploadToCloud(file?.filename);
-      imageUrls.push(url);
+      const { publicUrl } = file;
+      console.log("forum file::",publicUrl)
+      imageUrls.push(publicUrl);
     }
   }
   let forumAnswer = await ForumAnswer.create({

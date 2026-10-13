@@ -9,12 +9,12 @@ const createBook = async (req, res) => {
   //Creating Book
   const { image, pdf } = req.files;
   if (image) {
-    const { url } = await uploadToCloud(image[0].filename);
-    req.body.thumbnailUrl = url;
+    const { publicUrl } = image[0];
+    req.body.thumbnailUrl = publicUrl;
   }
   if (pdf) {
-    const { url } = await uploadToCloud(pdf[0].filename);
-    req.body.url = url;
+    const { publicUrl } = pdf[0];
+    req.body.url = publicUrl;
   }
 
   // req.body.userId = req.user.id;
@@ -32,12 +32,12 @@ const create = async (req, res) => {
   //Creating Book
   const { image, pdf } = req.files;
   if (image) {
-    const { url } = await uploadToCloud(image[0].filename);
-    req.body.thumbnailUrl = url;
+    const { publicUrl } = await image[0];
+    req.body.thumbnailUrl = publicUrl;
   }
   if (pdf) {
-    const { url } = await uploadToCloud(pdf[0].filename);
-    req.body.url = url;
+    const { publicUrl } = await pdf[0];
+    req.body.url = publicUrl;
   }
 
   req.body.userId = req.user.id;
