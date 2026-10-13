@@ -79,7 +79,7 @@ const deleteBook = async (req, res) => {
 };
 
 const getBook = async (req, res) => {
-  console.log("Welcoem");
+
   const { id } = req.params;
   if (!id) return ApiResponse.error(res, "Book ID Not Found", 400);
   let bookList = await Book.findOne({ where: { id: id } });
